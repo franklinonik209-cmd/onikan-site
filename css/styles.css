@@ -126,6 +126,7 @@ img { max-width: 100%; height: auto; display: block; }
 .band-navy h2, .band-navy h3 { color: var(--cream); }
 .band-navy a { color: var(--gold); }
 .band-navy .seal { width: 132px; margin: 0 auto 18px; }
+.band-navy .emblem-art { width: 400px; max-width: 78vw; margin: 0 auto 22px; }
 .band-navy .center { text-align: center; max-width: 680px; margin: 0 auto; }
 
 /* ---------- Books ---------- */
