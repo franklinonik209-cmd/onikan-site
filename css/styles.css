@@ -86,6 +86,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ---------- Hero ---------- */
 .hero { text-align: center; padding: 56px 0 8px; }
 .hero .lockup { width: min(300px, 68vw); margin: 0 auto 26px; }
+.hero .hero-seal { width: min(360px, 84vw); margin: 0 auto 20px; }
 .hero h1 { margin-bottom: 0.35em; }
 .hero .lede { max-width: 680px; margin: 0 auto 26px; font-size: 1.13rem; color: var(--ink); }
 .gold-rule { width: 92px; height: 3px; background: var(--gold); margin: 26px auto; border: 0; }
