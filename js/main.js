@@ -83,4 +83,19 @@
     }, { threshold: 0.4 });
     counters.forEach(function (el) { cio.observe(el); });
   }
+
+  // Page band: on band pages the header floats over the image band and
+  // turns solid once the band has scrolled past, so the wordmark stays
+  // legible against the page below.
+  var band = document.querySelector(".page-band");
+  var header = document.querySelector(".site-header");
+  if (band && header) {
+    var onScroll = function () {
+      var past = window.scrollY > band.offsetTop + band.offsetHeight - header.offsetHeight;
+      header.classList.toggle("solid", past);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  }
 })();
