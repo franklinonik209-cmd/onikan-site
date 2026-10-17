@@ -63,7 +63,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .header-in {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; padding: 20px 0;
+  gap: 20px; padding-top: 20px; padding-bottom: 20px;
 }
 .brand img { height: 42px; width: auto; }
 .main-nav { display: flex; gap: 24px; align-items: center; flex-wrap: nowrap; }
@@ -93,7 +93,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ---------- Hero: one statement, large, with room around it ---------- */
-.hero { text-align: center; padding: 110px 0 30px; }
+.hero { text-align: center; padding-top: 110px; padding-bottom: 30px; }
 .hero .lockup { width: min(300px, 68vw); margin: 0 auto 40px; }
 .hero .hero-seal { width: min(380px, 84vw); margin: 0 auto 52px; }
 .hero h1 { margin-bottom: 0.4em; }
@@ -121,8 +121,8 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-alt:hover { color: var(--gold-dark); }
 
 /* ---------- Sections: whitespace is the spacing system ---------- */
-.section { padding: 120px 0; }
-@media (max-width: 760px) { .section { padding: 72px 0; } }
+.section { padding-top: 120px; padding-bottom: 120px; }
+@media (max-width: 760px) { .section { padding-top: 72px; padding-bottom: 72px; } }
 .section-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
 .section-head p { color: var(--muted); font-size: 1.05rem; }
 .grid { display: grid; gap: 56px 48px; }
@@ -157,7 +157,7 @@ img { max-width: 100%; height: auto; display: block; }
 .book img {
   box-shadow: 0 18px 40px rgba(20, 33, 60, 0.14); margin-bottom: 26px;
 }
-.book h2, .book h3 { font-size: 1.7rem; }
+.book h2, .book h3 { font-size: 1.7rem; font-size: clamp(1.45rem, 5.4vw, 1.7rem); }
 .book .subtitle { font-family: "Noto Serif", Georgia, serif; font-style: italic; color: var(--muted); font-size: 1.05rem; margin-bottom: 12px; }
 .book .formats {
   font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
@@ -219,7 +219,7 @@ html:not(.js) .filter-bar { display: none; }
 .section > .group-h:first-of-type { margin-top: 0; }
 
 /* Release pipeline band. */
-.pipe-band .section { padding: 96px 0; }
+.pipe-band .section { padding-top: 96px; padding-bottom: 96px; }
 .pipe-band h2 { margin-bottom: 8px; }
 .band-sub { color: #B9C0D0; max-width: 720px; margin-bottom: 44px; }
 .ship-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
@@ -290,7 +290,7 @@ html:not(.js) .filter-bar { display: none; }
 
 /* ---------- Footer: an expansive quiet directory ---------- */
 .site-footer { background: var(--navy-deep); color: #D8DCE6; margin-top: 0; }
-.footer-in { padding: 88px 0 44px; text-align: center; }
+.footer-in { padding-top: 88px; padding-bottom: 44px; text-align: center; }
 .site-footer img { width: 280px; max-width: 78vw; margin: 0 auto 20px; }
 .site-footer img.seal-foot { width: 112px; max-width: 40vw; margin: 6px auto 22px; }
 .site-footer nav {
@@ -318,9 +318,9 @@ html:not(.js) .filter-bar { display: none; }
 /* ---------- Craft layer ---------- */
 .skip-link {
   position: absolute; left: 16px; top: -60px; z-index: 50;
-  background: var(--navy); color: var(--cream); padding: 10px 16px;
+  background: var(--navy); color: var(--cream); padding: 12px 16px;
   font-weight: 700; text-decoration: none;
-  font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
   transition: top 0.15s ease;
 }
 .skip-link:focus { top: 0; color: var(--cream); }
@@ -391,7 +391,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
   border-top: 3px solid var(--gold);
 }
 .sc-card .kicker { color: var(--gold); }
-.sc-card h3 { color: var(--cream); font-size: 1.9rem; margin: 0 0 4px; }
+.sc-card h3 { color: var(--cream); font-size: 1.9rem; font-size: clamp(1.6rem, 6vw, 1.9rem); margin: 0 0 4px; }
 .sc-ending {
   font-family: "Noto Serif", Georgia, serif; font-size: 1.25rem;
   color: var(--cream); margin: 0 0 6px;
@@ -457,10 +457,10 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .band-navy .kicker { color: var(--gold); }
 .band-navy .section-head p { color: #C9CFDC; }
 
-.stats { padding: 72px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats { padding-top: 72px; padding-bottom: 72px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .stats-k { text-align: center; margin-bottom: 44px; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 32px; text-align: center; }
-.stat-n { display: block; font-family: "Noto Serif", Georgia, serif; font-size: 3rem; line-height: 1.1; color: var(--navy); }
+.stat-n { display: block; font-family: "Noto Serif", Georgia, serif; font-size: 3rem; font-size: clamp(2.5rem, 13vw, 3rem); line-height: 1.1; color: var(--navy); }
 .stat-l { display: block; margin-top: 10px; font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: var(--gold-dark); }
 @media (max-width: 760px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
 
@@ -476,8 +476,60 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .prow p { margin: 0; color: #C9CFDC; max-width: 640px; }
 
 .distro { text-align: center; border-top: 1px solid var(--line); margin-top: 72px; padding-top: 72px; }
-.distro h2 { font-size: 2rem; margin-bottom: 14px; }
+.distro h2 { font-size: 2rem; font-size: clamp(1.7rem, 6vw, 2rem); margin-bottom: 14px; }
 .distro > p { color: var(--muted); max-width: 640px; margin: 0 auto; }
 .distro .marks { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 14px 16px; margin: 40px auto 0; color: var(--navy); font-family: "Noto Serif", Georgia, serif; font-size: 1.02rem; letter-spacing: 0.14em; text-transform: uppercase; }
 .distro .mk-sep { color: var(--gold); }
 @media print { .stats, .distro, .prows { break-inside: avoid; } }
+
+/* ---------- Mobile parity pass (October 2026) ----------
+   Frank's observation: Mills & Meadows reads as well on a phone as on a
+   desktop; ours did not. Audit found the root cause in the cascade, not
+   the breakpoints: every component class that shares an element with
+   .wrap (.section, .hero, .stats, .header-in, .footer-in) set a padding
+   SHORTHAND later in the file than .wrap, at equal specificity, and so
+   silently zeroed the 24px side gutters at every width. Centered heads
+   and the 1200px desktop container masked it; on a phone, left-aligned
+   text, filter bars, and card rows ran flush to the screen edge. The
+   shorthand rules above are now vertical longhands, which restores the
+   gutters everywhere; this block adds the phone discipline on top:
+   one spacing beat (72px) shared by every band, tap targets of at
+   least 44px, and a 13px floor under tracked labels. Desktop rules are
+   untouched except the gutter restoration itself. */
+@media (max-width: 900px) {
+  .header-in { padding-top: 12px; padding-bottom: 12px; }
+  .brand { padding-top: 3px; padding-bottom: 3px; }
+  .nav-toggle { font-size: 0.84rem; }
+  .site-footer nav a { padding: 13px 10px; font-size: 0.82rem; }
+  .site-footer a.foot-mail { display: inline-block; padding: 11px 4px; margin: -5px 0; }
+  .site-footer .ch-label { font-size: 0.84rem; }
+  .mobile-bar a { font-size: 0.82rem; }
+  .fbtn { padding: 13px 10px; font-size: 0.82rem; }
+}
+@media (max-width: 760px) {
+  .hero { padding-top: 76px; padding-bottom: 24px; }
+  .gold-rule { margin-top: 44px; }
+  .section-head { margin-bottom: 40px; }
+  .footer-in { padding-top: 64px; }
+  .pipe-band .section { padding-top: 72px; padding-bottom: 72px; }
+  .distro { margin-top: 56px; padding-top: 56px; }
+  .group-h { margin-top: 52px; }
+  .kicker, .card .kicker, .spotlight .kicker, .center-404 .kicker,
+  .chip, .stat-l, .book .formats, .sc-label { font-size: 0.84rem; }
+  .btn { font-size: 0.84rem; }
+  .hero-alt { padding: 12px 6px 13px; font-size: 0.84rem; }
+  .latest a { padding: 11px 6px 12px; font-size: 0.82rem; }
+  .book .links a, .spotlight .links a { padding: 12px 2px 13px; font-size: 0.84rem; }
+  .grid .card p > a:only-child { display: inline-block; padding: 11px 4px 12px; }
+  .big-mail a, .facts li a { display: inline-block; padding: 10px 4px; margin: -4px 0; }
+  .cta-band .cta-alt a { display: inline-block; padding: 11px 8px; }
+  .sc-sample { padding: 12px 4px; font-size: 0.84rem; }
+  .sc-card { padding: 28px 24px 24px; }
+  .about-grid { gap: 40px; }
+}
+@media (max-width: 620px) {
+  .grid { row-gap: 44px; }
+  .filter-bar { gap: 16px 22px; }
+  .pipe li { font-size: 0.84rem; letter-spacing: 0.03em; line-height: 1.4; }
+  .sc-stats dt { font-size: 0.84rem; }
+}
