@@ -18,7 +18,7 @@
   --ink: #232B3D;
   --muted: #5B6274;
   --line: #E0D5B9;
-  --maxw: 1200px;
+  --maxw: 1260px;
 }
 
 * { box-sizing: border-box; }
@@ -532,4 +532,69 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .filter-bar { gap: 16px 22px; }
   .pipe li { font-size: 0.84rem; letter-spacing: 0.03em; line-height: 1.4; }
   .sc-stats dt { font-size: 0.84rem; }
+}
+
+/* ---------- Composition parity (October 2026) ----------
+   Frank, side by side with Mills & Meadows: theirs still read as a
+   composed page on a phone, ours as a feed. The measured diagnosis
+   (hidden_files/composition-parity/SPEC.md): both sites stack nearly
+   everything at phone width and both phone pages grow by a similar
+   ratio; the gap was band cadence, head economy, and stepped (not
+   fluid) spacing. This block installs ONE proportion system: every
+   band's padding and every head margin rides a clamp() curve whose
+   maximum is the desktop value, so phone, tablet, and desktop are
+   one composition at three scales instead of three compositions.
+   It also distributes Home's dark bands the way their page does:
+   the numbers ledger is now a full-bleed navy band (index.html
+   carries it as .band-navy.stats-band, and Latest sits between the
+   emblem band and the closing band). Placed last so its rules win
+   the cascade ties against the stepped overrides above. */
+.section { padding-top: clamp(64px, 10vw, 120px); padding-bottom: clamp(64px, 10vw, 120px); }
+.section-head { margin-bottom: clamp(40px, 5.5vw, 64px); }
+.hero { padding-top: clamp(64px, 9vw, 110px); }
+.gold-rule { margin-top: clamp(36px, 6vw, 70px); }
+.pipe-band .section { padding-top: clamp(64px, 9vw, 96px); padding-bottom: clamp(64px, 9vw, 96px); }
+.stats { padding-top: clamp(56px, 8vw, 72px); padding-bottom: clamp(56px, 8vw, 72px); }
+.distro { margin-top: clamp(52px, 8vw, 72px); padding-top: clamp(52px, 8vw, 72px); }
+.footer-in { padding-top: clamp(60px, 8vw, 88px); }
+h3 { font-size: clamp(1.22rem, 1.1rem + 0.55vw, 1.3rem); }
+.card h3 { font-size: clamp(1.3rem, 1.16rem + 0.7vw, 1.45rem); }
+.latest-t { font-size: clamp(1.04rem, 0.94rem + 0.55vw, 1.14rem); }
+
+/* The numbers ledger on its navy ground: figures in cream, labels
+   and the kicker in gold (the kicker via .band-navy .kicker above). */
+.stats-band .stats { border-top: 0; border-bottom: 0; }
+.stats-band .stat-n { color: var(--cream); }
+.stats-band .stat-l { color: var(--gold); }
+
+@media (max-width: 900px) {
+  /* A slimmer phone header, so the hero owns more of the fold. The
+     brand link keeps its >=44px target: 36px mark + 4px pads. */
+  .header-in { padding-top: 8px; padding-bottom: 8px; }
+  .brand { padding-top: 4px; padding-bottom: 4px; }
+  .brand img { height: 36px; }
+}
+@media (max-width: 760px) {
+  /* Pace: the same compositions, arriving sooner. */
+  .grid .card { padding-top: 24px; }
+  .latest li { padding-top: 18px; padding-bottom: 18px; }
+  .prow { padding-top: 26px; padding-bottom: 26px; }
+  .book img { margin-bottom: 20px; }
+  .app-card img { margin-bottom: 16px; }
+  .group-h { margin-top: 44px; }
+}
+@media (max-width: 700px) {
+  .spotlight { gap: 32px; }
+  .spotlight img { width: min(280px, 76vw); }
+}
+@media (max-width: 620px) {
+  /* Their phone measure: content at 350 of 390. Desktop gutter
+     (24px) is unchanged above this width. */
+  .wrap { padding-left: 20px; padding-right: 20px; }
+  .grid { row-gap: 36px; }
+  .strip { gap: 22px; }
+  /* Formations that hold at phone scale, as theirs do where the
+     content allows: the release steps and the Life Card stats. */
+  .ship-steps { grid-template-columns: 1fr 1fr; }
+  .sc-stats { grid-template-columns: 1fr 1fr; gap: 16px 20px; }
 }
