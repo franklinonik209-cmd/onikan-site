@@ -355,6 +355,72 @@ html.js .reveal.in { opacity: 1; transform: none; }
   body.has-bar { padding-bottom: 50px; }
 }
 
+/* ---------- Story Codes page (story-codes.html): decoder + Life Card ---------- */
+.sc-tool { max-width: 680px; margin: 0 auto 72px; }
+.sc-label {
+  display: block; font-family: "Noto Sans", system-ui, sans-serif;
+  font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold-dark); font-weight: 700; margin: 0 0 12px;
+}
+.sc-row { display: flex; gap: 14px; align-items: stretch; }
+.sc-input {
+  flex: 1 1 auto; min-width: 0; background: var(--paper);
+  border: 1px solid var(--line); color: var(--ink);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.05rem; letter-spacing: 0.08em; padding: 14px 16px;
+}
+.sc-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.sc-row .btn { flex: 0 0 auto; cursor: pointer; font-family: inherit; }
+@media (max-width: 620px) {
+  .sc-row { flex-direction: column; }
+  .sc-row .btn { width: 100%; }
+}
+.sc-hint { color: var(--muted); font-size: 0.92rem; margin-top: 12px; }
+.sc-sample-row { color: var(--muted); font-size: 0.95rem; margin-top: 18px; }
+.sc-sample {
+  background: none; border: 0; padding: 0 0 4px; cursor: pointer;
+  font: inherit; font-size: 0.8rem; letter-spacing: 0.16em;
+  text-transform: uppercase; font-weight: 700; color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+}
+.sc-sample:hover { color: var(--gold-dark); }
+.sc-error { color: #9C2B2B; font-weight: 600; margin-top: 20px; }
+.sc-card {
+  background: var(--navy); color: var(--cream);
+  padding: 40px 40px 32px; margin-top: 30px;
+  border-top: 3px solid var(--gold);
+}
+.sc-card .kicker { color: var(--gold); }
+.sc-card h3 { color: var(--cream); font-size: 1.9rem; margin: 0 0 4px; }
+.sc-ending {
+  font-family: "Noto Serif", Georgia, serif; font-size: 1.25rem;
+  color: var(--cream); margin: 0 0 6px;
+}
+.sc-verdict {
+  font-family: "Noto Serif", Georgia, serif; font-style: italic;
+  color: #C9CFDC; margin: 0 0 26px;
+}
+.sc-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px 36px;
+  margin: 0 0 24px; padding-top: 22px;
+  border-top: 1px solid rgba(250, 245, 234, 0.22);
+}
+@media (max-width: 620px) { .sc-stats { grid-template-columns: 1fr; } }
+.sc-stats div { margin: 0; }
+.sc-stats dt {
+  font-family: "Noto Sans", system-ui, sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+  font-weight: 700; margin: 0 0 4px;
+}
+.sc-stats dd { margin: 0; font-size: 1.05rem; color: var(--cream); }
+.sc-endlist, .sc-ghost { color: #C9CFDC; }
+.sc-code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.1em; font-size: 1rem; color: var(--cream);
+  margin: 26px 0 6px; word-break: break-all;
+}
+.sc-fine { color: #C9CFDC; font-size: 0.85rem; margin: 0; }
+
 /* ---------- Print (facts and contact pages read well on paper) ---------- */
 @media print {
   body { background: #fff; color: #000; font-size: 12pt; }
@@ -369,3 +435,16 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .card { break-inside: avoid; }
   a { color: #000; }
 }
+
+/* ---------- Reading Room: evidence pages (October 2026) ----------
+   Figures carry the object first, then a caption in the house voice and
+   the photograph credit with its license, exactly as the episode's
+   license pack records it. Hairlines and whitespace separate, per the
+   house rule; no new colors, no boxes. */
+.rr-fig { margin: 0; }
+.rr-fig img { border: 1px solid var(--line); box-shadow: 0 14px 32px rgba(20, 33, 60, 0.12); width: 100%; }
+.rr-cap { font-size: 0.94rem; line-height: 1.65; margin-top: 14px; }
+.rr-cap .work { font-family: "Noto Serif", Georgia, serif; font-weight: 600; color: var(--navy); }
+.rr-credit { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+.rr-panel { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 30px 0 10px; margin: 8px 0 40px; }
+.rr-panel .facts { margin-top: 6px; }
