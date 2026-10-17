@@ -448,3 +448,36 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .rr-credit { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
 .rr-panel { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 30px 0 10px; margin: 8px 0 40px; }
 .rr-panel .facts { margin-top: 6px; }
+
+/* ---------- Mills & Meadows interface study adoptions (October 2026) ----
+   Patterns only, translated into the house dialect: a verifiable numbers
+   ledger on Home, a centered closing call band, a principles band of
+   hairline rows on About, and a retailer wordmark row on Books.
+   No new colors, no panels, no shadows, no images. */
+.band-navy .kicker { color: var(--gold); }
+.band-navy .section-head p { color: #C9CFDC; }
+
+.stats { padding: 72px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats-k { text-align: center; margin-bottom: 44px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 32px; text-align: center; }
+.stat-n { display: block; font-family: "Noto Serif", Georgia, serif; font-size: 3rem; line-height: 1.1; color: var(--navy); }
+.stat-l { display: block; margin-top: 10px; font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: var(--gold-dark); }
+@media (max-width: 760px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+
+.cta-band .btn.light { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+.cta-band .btn.light:hover { background: var(--cream); border-color: var(--cream); color: var(--navy); }
+.cta-band .cta-alt { margin-top: 26px; font-size: 0.95rem; }
+
+.prows { max-width: 860px; margin: 0 auto; }
+.prow { display: grid; grid-template-columns: 34px 1fr; gap: 4px 26px; padding: 32px 0; border-top: 1px solid rgba(250, 245, 234, 0.18); }
+.prow:last-child { border-bottom: 1px solid rgba(250, 245, 234, 0.18); }
+.prow-ic { width: 26px; height: 26px; color: var(--gold); margin-top: 2px; }
+.prow h3 { margin: 0 0 8px; font-family: "Noto Sans", system-ui, sans-serif; font-size: 0.86rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); }
+.prow p { margin: 0; color: #C9CFDC; max-width: 640px; }
+
+.distro { text-align: center; border-top: 1px solid var(--line); margin-top: 72px; padding-top: 72px; }
+.distro h2 { font-size: 2rem; margin-bottom: 14px; }
+.distro > p { color: var(--muted); max-width: 640px; margin: 0 auto; }
+.distro .marks { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 14px 16px; margin: 40px auto 0; color: var(--navy); font-family: "Noto Serif", Georgia, serif; font-size: 1.02rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.distro .mk-sep { color: var(--gold); }
+@media print { .stats, .distro, .prows { break-inside: avoid; } }
