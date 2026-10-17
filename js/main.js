@@ -58,4 +58,29 @@
       });
     });
   }
+
+  // House numbers: count up when they scroll into view. The HTML already
+  // carries the final figures, so no-JS and reduced-motion readers see
+  // the true numbers with no animation.
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) { return; }
+        var el = entry.target;
+        cio.unobserve(el);
+        var target = parseInt(el.getAttribute("data-count"), 10);
+        var start = null;
+        var step = function (ts) {
+          if (!start) { start = ts; }
+          var p = Math.min((ts - start) / 900, 1);
+          el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) { window.requestAnimationFrame(step); }
+        };
+        window.requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { cio.observe(el); });
+  }
 })();
