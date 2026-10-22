@@ -221,6 +221,21 @@ html.js .band-page .site-header:not(.solid) .nav-toggle {
 }
 .hero-alt:hover { color: var(--gold-dark); }
 
+/* Hero focus lines: the three fronts, stated plainly in the hero. */
+.hero-focus {
+  list-style: none; margin: 0 auto 2.5rem; padding: 0; max-width: 64rem;
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+}
+.hero-focus li { border-top: 1px solid var(--gold); padding-top: 1rem; }
+.hero-focus a {
+  font-family: "Noto Serif", Georgia, serif; font-size: 1.18rem; font-weight: 600;
+  color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold);
+  padding: 0.5rem 0.25rem 0.5625rem; display: inline-block;
+}
+.hero-focus a:hover { color: var(--gold-dark); }
+.hero-focus p { margin: 0.5rem auto 0; max-width: 19rem; color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
+@media (min-width: 48em) { .hero-focus { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+
 /* ---------- Sections: whitespace is the spacing system ----------
    One generous beat at every width: 4.5rem on the phone, the full 7.5rem
    from the tablet tier up, exactly as the approved design holds it. */
@@ -374,6 +389,17 @@ html:not(.js) .filter-bar { display: none; }
 .pipe li.current { color: var(--navy); }
 .pipe li.current .dot { background: var(--navy); border-color: var(--gold); box-shadow: 0 0 0 3px rgba(193, 154, 61, 0.3); }
 .now { font-size: 0.95rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.875rem; }
+
+/* Added visuals on app cards (2026-10-22 feedback pass): actual screens are
+   shown whole and centered at a readable measure; the icon and the symbol
+   strip carry only what they are. */
+.app-card img.actual-screen-img { width: min(16.5rem, 82%); margin: 0 auto 1.25rem; }
+.app-card img.app-icon-img { width: 8rem; height: 8rem; object-fit: contain; }
+.next-grid { margin-top: 3.5rem; }
+.symbol-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+.symbol-strip figure { margin: 0; text-align: center; }
+.app-card .symbol-strip img { border: 0; margin: 0 auto 0.35rem; width: 100%; background: #fff; }
+.symbol-strip figcaption { font-size: 0.82rem; color: var(--muted); }
 .now strong { color: var(--navy); }
 
 /* ---------- About / Contact ---------- */
