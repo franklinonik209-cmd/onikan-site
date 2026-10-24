@@ -50,9 +50,9 @@ h1, h2, h3, .serif {
   margin: 0 0 0.5em;
 }
 
-h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.08; letter-spacing: -0.01em; }
-h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); line-height: 1.15; }
-h3 { font-size: 1.3rem; line-height: 1.3; }
+h1 { font-size: clamp(2.3rem, 4.6vw, 3.5rem); line-height: 1.08; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.65rem, 3.2vw, 2.35rem); line-height: 1.15; }
+h3 { font-size: 1.22rem; line-height: 1.3; }
 
 p { margin: 0 0 1em; }
 a { color: var(--gold-dark); }
@@ -131,8 +131,8 @@ img { max-width: 100%; height: auto; display: block; }
 .band-in {
   position: relative; z-index: 2; flex: 1 1 auto;
   display: flex; flex-direction: column; justify-content: flex-end;
-  min-height: max(19rem, 42vh);
-  padding-top: 7rem; padding-bottom: 2.5rem;
+  min-height: max(15rem, 34vh);
+  padding-top: 4.25rem; padding-bottom: 2rem;
 }
 .band-crumb {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem;
@@ -148,7 +148,7 @@ img { max-width: 100%; height: auto; display: block; }
 .band-crumb .sep { color: rgba(250, 245, 234, 0.6); }
 .page-band h1 {
   color: var(--cream); margin: 0; max-width: 62rem;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.1rem, 4.6vw, 3.25rem);
 }
 .band-credit {
   position: relative; z-index: 2; align-self: flex-end;
@@ -187,14 +187,14 @@ html.js .band-page .site-header:not(.solid) .nav-toggle {
 .section-head.page-intro p { max-width: 45rem; }
 
 /* ---------- Hero (homepage, closed composition) ---------- */
-.hero { text-align: center; padding-top: 4.75rem; padding-bottom: 1.5rem; }
+.hero { text-align: center; padding-top: 3.25rem; padding-bottom: 1.25rem; }
 .hero .lockup { width: min(18.75rem, 68vw); margin: 0 auto 2.5rem; }
-.hero .hero-seal { width: min(23.75rem, 84vw); margin: 0 auto 3.25rem; }
+.hero .hero-seal { width: min(15.5rem, 62vw); margin: 0 auto 2rem; }
 .hero h1 { margin-bottom: 0.4em; }
 .hero .lede { max-width: 40rem; margin: 0 auto 2.5rem; font-size: 1.18rem; line-height: 1.75; color: var(--ink); }
 .gold-rule { width: 7.5rem; height: 1px; background: var(--gold); margin: 2.75rem auto 0; border: 0; }
 @media (min-width: 48em) {
-  .hero { padding-top: 6.875rem; padding-bottom: 1.875rem; }
+  .hero { padding-top: 4.5rem; padding-bottom: 1.5rem; }
   .gold-rule { margin-top: 4.375rem; }
 }
 
@@ -239,10 +239,10 @@ html.js .band-page .site-header:not(.solid) .nav-toggle {
 /* ---------- Sections: whitespace is the spacing system ----------
    One generous beat at every width: 4.5rem on the phone, the full 7.5rem
    from the tablet tier up, exactly as the approved design holds it. */
-.section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
-@media (min-width: 48em) { .section { padding-top: 7.5rem; padding-bottom: 7.5rem; } }
+.section { padding-top: 3.25rem; padding-bottom: 3.25rem; }
+@media (min-width: 48em) { .section { padding-top: 5.25rem; padding-bottom: 5.25rem; } }
 .section-head { text-align: center; max-width: 45rem; margin: 0 auto 2.5rem; }
-@media (min-width: 48em) { .section-head { margin-bottom: 4rem; } }
+@media (min-width: 48em) { .section-head { margin-bottom: 2.75rem; } }
 .section-head p { color: var(--muted); font-size: 1.05rem; }
 .grid { display: grid; gap: 2.75rem; }
 @media (min-width: 48em) { .grid { gap: 3.5rem 3rem; } }
@@ -256,7 +256,7 @@ html.js .band-page .site-header:not(.solid) .nav-toggle {
 /* Cards are editorial entries: no borders, no shadows, no panels.
    A hairline above each entry and air around it do the separating. */
 .card { background: transparent; border: 0; padding: 0; }
-.card h3 { margin-top: 0; font-size: 1.45rem; }
+.card h3 { margin-top: 0; font-size: 1.3rem; }
 .kicker, .card .kicker, .spotlight .kicker, .center-404 .kicker {
   font-family: "Noto Sans", system-ui, sans-serif;
   font-size: 0.84rem; letter-spacing: 0.28em; text-transform: uppercase;
@@ -315,7 +315,7 @@ html.js .band-page .site-header:not(.solid) .nav-toggle {
   .spotlight { grid-template-columns: 21.25rem 1fr; gap: 4.5rem; }
   .spotlight img { width: auto; }
 }
-.spotlight h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+.spotlight h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
 .spotlight .subtitle { font-family: "Noto Serif", Georgia, serif; font-style: italic; color: var(--muted); font-size: 1.1rem; margin-bottom: 0.875rem; }
 .spotlight .links { display: flex; gap: 1.75rem; flex-wrap: wrap; align-items: center; margin-top: 1.375rem; }
 .spotlight .links a {
@@ -362,8 +362,8 @@ html:not(.js) .filter-bar { display: none; }
 .section > .group-h:first-of-type { margin-top: 0; }
 
 /* Release pipeline band. */
-.pipe-band .section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
-@media (min-width: 48em) { .pipe-band .section { padding-top: 6rem; padding-bottom: 6rem; } }
+.pipe-band .section { padding-top: 3.25rem; padding-bottom: 3.25rem; }
+@media (min-width: 48em) { .pipe-band .section { padding-top: 4.25rem; padding-bottom: 4.25rem; } }
 .pipe-band h2 { margin-bottom: 0.5rem; }
 .band-sub { color: #B9C0D0; max-width: 45rem; margin-bottom: 2.75rem; }
 .ship-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 2rem; }
@@ -611,11 +611,11 @@ body.has-bar { padding-bottom: 3.125rem; }
 .band-navy .kicker { color: var(--gold); }
 .band-navy .section-head p { color: #C9CFDC; }
 
-.stats { padding-top: 4.5rem; padding-bottom: 4.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats { padding-top: 3.25rem; padding-bottom: 3.25rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .stats-k { text-align: center; margin-bottom: 2.75rem; }
 .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 2rem; text-align: center; }
 @media (min-width: 48em) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
-.stat-n { display: block; font-family: "Noto Serif", Georgia, serif; font-size: clamp(2.5rem, 13vw, 3rem); line-height: 1.1; color: var(--navy); }
+.stat-n { display: block; font-family: "Noto Serif", Georgia, serif; font-size: clamp(2rem, 10vw, 2.4rem); line-height: 1.1; color: var(--navy); }
 .stat-l { display: block; margin-top: 0.625rem; font-size: 0.84rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: var(--gold-dark); }
 
 /* The closing band's button carries the house email address: long tracked
