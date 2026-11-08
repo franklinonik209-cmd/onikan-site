@@ -79,21 +79,21 @@
   <section class="section wrap">
     <div class="section-head page-intro">
       <p>ClearScan is made by Onikan Global Solutions LLC. Contact: contact@onikanglobal.com. This policy describes what the ClearScan app does with your information.</p>
-      <p>Effective November 5, 2026.</p>
+      <p>Effective November 5, 2026. Updated November 8, 2026: sections 2 and 4 corrected to describe the encryption at rest and the PIN handling the app ships with (see section 10).</p>
     </div>
 
 <h2>1. The short version</h2>
 <p>ClearScan is a camera and a filing cabinet. Your documents never leave your phone through ClearScan. There is no account, no cloud upload, no analytics, and no advertising. We collect nothing from you, because there is nowhere for anything to go: everything ClearScan stores lives in the app's private directory on your phone, and the only time a document leaves that directory is when you yourself choose to share it through your phone's own share sheet.</p>
 <h2>2. What ClearScan stores on your phone (and nowhere else)</h2>
-<p>When you scan, file, filter, sign, redact, or tag a document, ClearScan stores the following on your phone only:</p>
+<p>When you scan, file, filter, sign, redact, or tag a document, ClearScan stores the following on your phone only, in the app's private directory. The library is encrypted at rest: the index and every page file are sealed with AES-256-GCM encryption under a key that is generated on your phone and held in your phone's own secure keystore (the iOS Keychain or the Android Keystore), never in the app's directory and never on any server. If a sealed file is tampered with, it fails its integrity check and ClearScan refuses to open it.</p>
 <ul>
-<li>The scanned page images, as image files in the app's private directory.</li>
-<li>A library index entry for each document: its title, its folder (if you filed it in one), its tags, the text extracted from its pages by on-device OCR (so library search can find it), and its created and updated timestamps.</li>
-<li>Filtered, signed, and redacted copies, when you make them: each is filed as a new document with its own page image. The original document is never modified.</li>
-<li>If you set an app lock PIN: the PIN and a biometric on/off flag, in a file in the same private directory (see section 4 for the honest limit of this lock).</li>
+<li>The scanned page images, each one sealed with that encryption before it is written in the app's private directory.</li>
+<li>A library index entry for each document: its title, its folder (if you filed it in one), its tags, the text extracted from its pages by on-device OCR (so library search can find it), and its created and updated timestamps. The index, OCR text included, is sealed with the same encryption.</li>
+<li>Filtered, signed, and redacted copies, when you make them: each is filed as a new document with its own page image, sealed the same way. The original document is never modified.</li>
+<li>If you set an app lock PIN: never the PIN itself. ClearScan stores a random salt and a one-way verifier derived from the PIN (PBKDF2-HMAC-SHA256), plus a biometric on/off flag, in a file in the same private directory (see section 4).</li>
 <li>Exported PDFs and JPGs, only in the temporary directory ClearScan creates when you tap Share, and only until the share sheet takes over.</li>
 </ul>
-<p>ClearScan does not store your documents, titles, tags, OCR text, or PIN on any server, because ClearScan has no server and no account system.</p>
+<p>ClearScan does not store your documents, titles, tags, or OCR text on any server, because ClearScan has no server and no account system. The encryption key never leaves your phone's keystore.</p>
 <h2>3. What ClearScan does not collect</h2>
 <ul>
 <li>No account information: there is no sign-in, no email address, no user ID, and no password anywhere in the product.</li>
@@ -102,8 +102,8 @@
 <li>No biometric data: the biometric prompt is your phone's own prompt. ClearScan receives only a pass or fail answer, and stores only your on/off choice, never a fingerprint or a face.</li>
 <li>No payment data: see section 7.</li>
 </ul>
-<h2>4. The app lock, stated plainly</h2>
-<p>The app lock is a usability gate, not encryption. It keeps casual browsing out of the library; it does not encrypt anything. Your scanned pages are plain image files in the app's private directory, and the PIN itself is stored in plain text in a file in that same directory. A forgotten PIN has no recovery: removing it means clearing the app's data, which also removes the library. Do not treat the lock as protection against someone with full access to your unlocked phone or to its files. This section exists so the lock is never oversold.</p>
+<h2>4. The app lock and the encryption, stated plainly</h2>
+<p>Your library is encrypted at rest whether or not you set a PIN. The page images and the library index are sealed with AES-256-GCM under a key held in your phone's secure keystore, so a copy of the app's files, taken without the key, does not open. The app lock PIN sits on top of that encryption as the gate you see. The PIN itself is never stored: ClearScan keeps a random salt and a one-way verifier derived from the PIN, and checks what you type against that verifier. Wrong guesses are counted, and from the fifth consecutive failure the gate locks out for a delay that grows with each further failure, up to 15 minutes. The honest limits: a 4-digit PIN has only 10,000 combinations, so if someone extracted the verifier and attacked it offline, the PIN would buy time rather than proof; and no app lock or encryption protects a library while your phone itself is unlocked in someone else's hands. A forgotten PIN has no recovery: removing it means clearing the app's data, which also removes the library. This section exists so the protection is never oversold, in either direction.</p>
 <h2>5. Sharing: the one way a document leaves your phone</h2>
 <p>ClearScan itself never uploads, emails, or messages anything. The only way a document leaves your phone through ClearScan is when you tap Share (or the equivalent action) and then choose a destination in your phone's own share sheet, such as Files, Mail, or Messages. That destination receives the exported PDF because you chose it, under that destination's own privacy policy, not because ClearScan sent it. If you never tap Share, nothing leaves.</p>
 <h2>6. Camera, scanner, and OCR: processed on your phone</h2>
@@ -115,7 +115,7 @@
 <h2>9. Deleting your data</h2>
 <p>Because we hold no copy, there is nothing to ask us to delete. To remove everything ClearScan stores, clear the app's data or uninstall the app on your phone; that removes the app's private directory, including the library index, the page images, and the app lock file. If you shared a document through the share sheet, the copy you sent lives wherever you sent it, and only that destination can remove it.</p>
 <h2>10. Changes to this policy</h2>
-<p>If ClearScan gains a feature that changes any claim above (an account, a cloud feature, a live payment path, analytics), this policy is updated before that build is submitted, the change is named in the update, and the new version is posted at this same address with a new effective date.</p>
+<p>If ClearScan gains a feature that changes any claim above (an account, a cloud feature, a live payment path, analytics), this policy is updated before that build is submitted, the change is named in the update, and the new version is posted at this same address with a new effective date. Update of November 8, 2026: sections 2 and 4 were corrected because the first published text described an earlier build. The app seals its library with AES-256-GCM encryption at rest and never stores the app lock PIN; the corrected sections now say so. No claim in any other section changed.</p>
 <h2>11. Contact</h2>
 <p>Questions about this policy: contact@onikanglobal.com (company general desk). Publisher: Onikan Global Solutions LLC.</p>
 <hr />
