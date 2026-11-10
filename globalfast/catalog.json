@@ -1,26 +1,6 @@
 {
  "channels": [
   {
-   "category": "News",
-   "description": "Live coverage of launches, spacewalks, briefings and mission events, plus NASA features. Source: NASA. Carried under NASA's media guidelines: NASA-produced material is a work of the US federal government and is not subject to copyright (17 U.S.C. 105). NASA does not endorse this app.",
-   "id": "nasa-tv",
-   "name": "NASA TV",
-   "region": "Global",
-   "rightsBasis": "US federal government work, public domain (17 U.S.C. 105); NASA Images and Media Usage Guidelines. See RIGHTS-REGISTER.md row: NASA TV (live), CLEARED 2026-10-24.",
-   "streamUrl": "https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8",
-   "territories": []
-  },
-  {
-   "category": "Entertainment",
-   "description": "NASA documentaries, series and features from across the agency's missions. Source: NASA. Carried under NASA's media guidelines: NASA-produced material is a work of the US federal government and is not subject to copyright (17 U.S.C. 105). NASA does not endorse this app.",
-   "id": "nasa-media",
-   "name": "NASA Media Channel",
-   "region": "Global",
-   "rightsBasis": "US federal government work, public domain (17 U.S.C. 105); NASA Images and Media Usage Guidelines. See RIGHTS-REGISTER.md row: NASA Media Channel (live), CLEARED 2026-10-24.",
-   "streamUrl": "https://ntv2.akamaized.net/hls/live/2013923/NASA-NTV2-HLS/master.m3u8",
-   "territories": []
-  },
-  {
    "category": "Entertainment",
    "description": "Tablets & Truth, Onikan's own ancient-history series: full episodes and Shorts from the channel, playing back to back. Source: Onikan Global Solutions LLC. Every program on this channel was produced and is owned by us.",
    "id": "onikan-originals",
@@ -52,5 +32,5 @@
   }
  ],
  "generatedNote": "Catalog for Global FAST TV (working title). RULE: a channel may appear here ONLY if its row in RIGHTS-REGISTER.md is CLEARED with cited evidence. Pending-license channels are never added. https://collecting-surname-remains-epinions.trycloudflare.com is substituted with the streaming base URL by tools/publish_catalog.py.",
- "version": 2
+ "version": 3
 }
