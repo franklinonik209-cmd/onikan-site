@@ -414,6 +414,22 @@ html:not(.js) .filter-bar { display: none; }
 .symbol-strip figcaption { font-size: 0.82rem; color: var(--muted); }
 .now strong { color: var(--navy); }
 
+/* Provenance strips, comparison tables, fit blocks (2026-11-10,
+   Papermark full-field teardown transfers): claims carry their source
+   and date; product pages compare honestly against the incumbent way;
+   offer pages state who they fit and who they do not. */
+.prov { font-size: 0.86rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.75rem; }
+.prov strong { color: var(--navy); }
+table.cmp { width: 100%; border-collapse: collapse; margin: 1rem 0 1.25rem; font-size: 0.95rem; }
+table.cmp th, table.cmp td { text-align: left; vertical-align: top; padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--line); }
+table.cmp thead th { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 2px solid var(--gold); }
+table.cmp th[scope="row"] { font-weight: 600; color: var(--navy); }
+.fit-grid { display: grid; gap: 1.5rem; margin: 1rem 0 1.5rem; }
+@media (min-width: 48em) { .fit-grid { grid-template-columns: 1fr 1fr; } }
+.fit-grid h4 { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin: 0 0 0.5rem; }
+.fit-grid ul { margin: 0; padding-left: 1.1rem; }
+.fit-grid li { margin-bottom: 0.4rem; }
+
 /* ---------- About / Contact ---------- */
 .about-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
 @media (min-width: 48em) { .about-grid { grid-template-columns: 20rem 1fr; gap: 3.5rem; } }
