@@ -1,0 +1,56 @@
+{
+ "channels": [
+  {
+   "category": "News",
+   "description": "Live coverage of launches, spacewalks, briefings and mission events, plus NASA features. Source: NASA. Carried under NASA's media guidelines: NASA-produced material is a work of the US federal government and is not subject to copyright (17 U.S.C. 105). NASA does not endorse this app.",
+   "id": "nasa-tv",
+   "name": "NASA TV",
+   "region": "Global",
+   "rightsBasis": "US federal government work, public domain (17 U.S.C. 105); NASA Images and Media Usage Guidelines. See RIGHTS-REGISTER.md row: NASA TV (live), CLEARED 2026-10-24.",
+   "streamUrl": "https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8",
+   "territories": []
+  },
+  {
+   "category": "Entertainment",
+   "description": "NASA documentaries, series and features from across the agency's missions. Source: NASA. Carried under NASA's media guidelines: NASA-produced material is a work of the US federal government and is not subject to copyright (17 U.S.C. 105). NASA does not endorse this app.",
+   "id": "nasa-media",
+   "name": "NASA Media Channel",
+   "region": "Global",
+   "rightsBasis": "US federal government work, public domain (17 U.S.C. 105); NASA Images and Media Usage Guidelines. See RIGHTS-REGISTER.md row: NASA Media Channel (live), CLEARED 2026-10-24.",
+   "streamUrl": "https://ntv2.akamaized.net/hls/live/2013923/NASA-NTV2-HLS/master.m3u8",
+   "territories": []
+  },
+  {
+   "category": "Entertainment",
+   "description": "Tablets & Truth, Onikan's own ancient-history series: full episodes and Shorts from the channel, playing back to back. Source: Onikan Global Solutions LLC. Every program on this channel was produced and is owned by us.",
+   "id": "onikan-originals",
+   "name": "Onikan Originals",
+   "region": "Global",
+   "rightsBasis": "Own original content, produced and owned by Onikan Global Solutions LLC. See RIGHTS-REGISTER.md row: Onikan Originals (Tablets & Truth), CLEARED 2026-11-09.",
+   "streamUrl": "https://collecting-surname-remains-epinions.trycloudflare.com/originals/index.m3u8",
+   "territories": []
+  },
+  {
+   "category": "Audiobooks",
+   "description": "The audiobook of Gods of the Clay Tablets by Franklin Onikan, narrated in the author's own voice, chapter by chapter. Chapters are added as production completes; this channel currently carries chapters 1, 2, 4 and 6 of 22. Source: Onikan Global Solutions LLC.",
+   "id": "author-franklin-onikan-gods",
+   "name": "Franklin Onikan \u2014 Gods of the Clay Tablets",
+   "region": "Authors",
+   "rightsBasis": "Own original content: the book and its narration are owned by the author, Franklin Onikan, and Onikan Global Solutions LLC. See RIGHTS-REGISTER.md row: Franklin Onikan (author channel), CLEARED 2026-11-09.",
+   "streamUrl": "https://collecting-surname-remains-epinions.trycloudflare.com/gods/index.m3u8",
+   "territories": []
+  },
+  {
+   "category": "Faith",
+   "description": "Recorded streams and episodes from Tablets & Truth, Franklin Onikan's ancient-texts series: full episodes and Shorts, playing back to back. Source: Onikan Global Solutions LLC.",
+   "id": "author-franklin-onikan-streams",
+   "name": "Franklin Onikan \u2014 Tablets & Truth Streams",
+   "region": "Authors",
+   "rightsBasis": "Own original content, produced and owned by Franklin Onikan and Onikan Global Solutions LLC. See RIGHTS-REGISTER.md row: Franklin Onikan (author channel), CLEARED 2026-11-09.",
+   "streamUrl": "https://collecting-surname-remains-epinions.trycloudflare.com/originals/index.m3u8",
+   "territories": []
+  }
+ ],
+ "generatedNote": "Catalog for Global FAST TV (working title). RULE: a channel may appear here ONLY if its row in RIGHTS-REGISTER.md is CLEARED with cited evidence. Pending-license channels are never added. https://collecting-surname-remains-epinions.trycloudflare.com is substituted with the streaming base URL by tools/publish_catalog.py.",
+ "version": 2
+}
