@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your Audiobook, Priced - A Ghost Narrator Worksheet</title>
+<style>
+  body { font-family: Georgia, "Times New Roman", serif; color: #1a1a1a; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.55; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 28px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+  .sub { color: #555; margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #999; padding: 6px 10px; text-align: left; font-size: 15px; }
+  th { background: #f0f0f0; }
+  .calc { border: 2px solid #1a1a1a; padding: 16px 20px; margin: 20px 0; }
+  .calc label { font-weight: bold; }
+  .calc input { font-size: 18px; padding: 6px 10px; width: 180px; margin: 8px 0; }
+  .calc button { font-size: 16px; padding: 8px 18px; cursor: pointer; }
+  .result { font-size: 18px; margin-top: 12px; }
+  .result b { font-size: 22px; }
+  .note { font-size: 13px; color: #555; }
+  .footer { font-size: 13px; color: #555; border-top: 1px solid #ccc; margin-top: 32px; padding-top: 12px; }
+  @media print {
+    body { margin: 0; max-width: none; }
+    .calc button { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Your Audiobook, Priced</h1>
+<p class="sub">A Ghost Narrator worksheet for indie authors. Free.</p>
+
+<p>You finished the book. The next question is the one every author asks first: what will the audiobook cost? This worksheet answers it in three steps, from your word count to a price. It takes two minutes and a word count you already have.</p>
+
+<div class="calc">
+  <label for="words">Try it: enter your word count</label><br>
+  <input id="words" type="number" min="1000" step="100" placeholder="e.g. 75000">
+  <button onclick="estimate()">Price my audiobook</button>
+  <div class="result" id="output"></div>
+  <p class="note">The calculator runs entirely in your browser. Nothing you type leaves this page.</p>
+</div>
+
+<script>
+function estimate() {
+  var w = parseInt(document.getElementById("words").value, 10);
+  var out = document.getElementById("output");
+  if (!w || w <= 0) { out.innerHTML = "Enter a word count above 0."; return; }
+  var hours = Math.round((w / 9300) * 10) / 10;
+  var raw = hours * 200 + 400;
+  var price = Math.min(Math.max(raw, 1400), 2900);
+  var tag = "";
+  if (raw < 1400) { tag = " (the $1,400 minimum applies)"; }
+  if (raw > 2900) { tag = " (the $2,900 maximum applies)"; }
+  out.innerHTML = "Finished hours: <b>" + hours.toFixed(1) + "</b><br>Ghost Narrator price: <b>$" + price.toLocaleString("en-US") + "</b>" + tag + "<br>Half up front: <b>$" + (price / 2).toLocaleString("en-US") + "</b>";
+}
+</script>
+
+<h2>Step 1: Count your words</h2>
+<p>Open your manuscript and read the word count. In Microsoft Word it sits at the bottom left of the window. In Google Docs it is under Tools, then Word count. Count the words that will be read aloud: the story itself, not the copyright page, dedication, or acknowledgements if those will not be recorded.</p>
+
+<h2>Step 2: Turn words into finished hours</h2>
+<p>A finished hour is one hour of final, retail-ready audio. ACX, the Audible audiobook marketplace, plans on about 9,300 words per finished hour. Divide your word count by 9,300.</p>
+<p>Finished hours = your word count / 9,300</p>
+<p>Example: a 75,000-word novel is 75,000 / 9,300 = 8.1 finished hours.</p>
+
+<h2>Step 3: Turn finished hours into a price</h2>
+<p>Ghost Narrator charges $200 per finished hour plus a $400 production fee. The price has a floor and a cap: no book costs less than $1,400, and no book costs more than $2,900. You pay half up front and half on delivery.</p>
+<p>Price = (finished hours x $200) + $400, floored at $1,400, capped at $2,900</p>
+<p>Up front = price / 2</p>
+
+<h2>The lookup table</h2>
+<p>If your book is near one of these sizes, read the price straight off the table. Hours are rounded to one decimal; the price is worked from the rounded hours.</p>
+<table>
+  <tr><th>Word count</th><th>Finished hours</th><th>Ghost Narrator price</th><th>Half up front</th></tr>
+  <tr><td>20,000</td><td>2.2</td><td>$1,400 (floor)</td><td>$700</td></tr>
+  <tr><td>40,000</td><td>4.3</td><td>$1,400 (floor)</td><td>$700</td></tr>
+  <tr><td>50,000</td><td>5.4</td><td>$1,480</td><td>$740</td></tr>
+  <tr><td>65,000</td><td>7.0</td><td>$1,800</td><td>$900</td></tr>
+  <tr><td>75,000</td><td>8.1</td><td>$2,020</td><td>$1,010</td></tr>
+  <tr><td>80,000</td><td>8.6</td><td>$2,120</td><td>$1,060</td></tr>
+  <tr><td>90,000</td><td>9.7</td><td>$2,340</td><td>$1,170</td></tr>
+  <tr><td>100,000</td><td>10.8</td><td>$2,560</td><td>$1,280</td></tr>
+  <tr><td>120,000</td><td>12.9</td><td>$2,900 (cap)</td><td>$1,450</td></tr>
+</table>
+<p>How the floor and cap work: below 5.0 finished hours the arithmetic falls under $1,400, so the $1,400 minimum applies. Above 12.5 finished hours the arithmetic passes $2,900, so the $2,900 maximum applies. A typical seven-hour book costs $1,800: 7.0 x $200 + $400.</p>
+
+<h2>What the price covers</h2>
+<p>Narration by a human voice, editing, and mastering to the ACX audio spec (the spec every Audible audiobook must meet), plus guidance on where to publish. The finished files are yours, and the royalties are yours: Ghost Narrator is paid a flat production fee, not a share of your sales.</p>
+
+<h2>What you keep</h2>
+<p>Once the audiobook is live, the store pays you on every sale. At a $19.95 list price:</p>
+<ul>
+  <li>ACX, exclusive distribution: 50% of list price, $9.98 per sale.</li>
+  <li>ACX, non-exclusive distribution: 30% of list price, $5.99 per sale.</li>
+  <li>Spotify for Authors: 50% of list price on a sale, $9.98 per sale, plus a share of a listener pool when Premium members listen.</li>
+  <li>Kobo Writing Life: 45% of list price at $2.99 or more, $8.98 per sale.</li>
+  <li>Google Play Books: 52% reported by secondary sources, $10.37 per sale. Google does not publish one figure for uploaded audiobooks, so confirm the rate in Partner Center before you count on it.</li>
+</ul>
+<p>At the ACX exclusive rate, a $1,800 production pays for itself after about 181 sales at $19.95. 1,800 / 9.98 = 180.4. That is arithmetic, not a promise: your sales depend on your book, your price, and your readers.</p>
+
+<h2>The honest part</h2>
+<p>These are estimates, not quotes. Narration pace varies by book: dialogue-heavy fiction and books with many character voices run longer, technical books run longer, brisk nonfiction runs shorter. The planning range is about 8,500 words per hour for technical books to about 9,800 for memoir, against the 9,300 standard used here. Your final Ghost Narrator price is set from the actual finished length of your audiobook after production, never from this estimate alone.</p>
+
+<h2>Next step</h2>
+<p>If the number works for you, write to Ghost Narrator at contact@onikanglobal.com with your word count and your book. You will get a confirmed price from the finished length and a start date. No payment is taken until you approve the quote and pay the first half.</p>
+
+<p class="footer">Ghost Narrator is a service of Onikan Global Solutions LLC. Prices checked November 13, 2026: $200 per finished hour plus a $400 production fee, $1,400 minimum, $2,900 maximum, half up front, half on delivery. The 9,300 words per finished hour figure is ACX's planning figure, as reported by Granary Digital, CollabPals, The Collingwood Press, Bookbird, and StoryVox. Royalty rates verified November 12, 2026: ACX 50% exclusive / 30% non-exclusive, Spotify for Authors 50%, Kobo Writing Life 45% at $2.99 or more, Google Play 52% reported.</p>
+
+</body>
+</html>
