@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScoreLedger report</title>
+<!--
+  SL-SHARE-1 viewer: a single static page with no external resources,
+  no scripts loaded from anywhere else, and no network calls. The
+  report payload travels in the link fragment (#r=...), which the
+  browser never sends to a server. This page reads the fragment,
+  checks the expiry, and renders the report. View-only: there is
+  nothing here to edit, submit, or send.
+-->
+<style>
+  :root {
+    --bg: #f2f2f7;
+    --surface: #ffffff;
+    --label: #1c1c1e;
+    --secondary: #6e6e73;
+    --hairline: #d1d1d6;
+    --accent: #007aff;
+    --green: #34c759;
+    --lime: #8ac926;
+    --orange: #ff9500;
+    --red: #ff3b30;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #000000;
+      --surface: #1c1c1e;
+      --label: #ffffff;
+      --secondary: #aeaeb2;
+      --hairline: #38383a;
+      --accent: #0a84ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--label);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.4;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 28px; font-weight: 700; margin: 0 0 2px; }
+  h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.6px;
+    text-transform: uppercase; color: var(--secondary);
+    margin: 28px 4px 8px;
+  }
+  .card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 12px;
+  }
+  .brand { color: var(--secondary); font-size: 15px; }
+  .score-row { display: flex; align-items: baseline; gap: 6px; margin-top: 10px; }
+  .score { font-size: 64px; font-weight: 700; line-height: 1; }
+  .of { color: var(--secondary); font-size: 17px; font-weight: 600; }
+  .meta { color: var(--secondary); font-size: 13px; margin-top: 10px; }
+  .chip {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--hairline); font-size: 13px; margin-top: 10px;
+  }
+  .ledger-row {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 5px 0;
+  }
+  .ledger-row .detail { color: var(--secondary); font-size: 13px; }
+  .ledger-row.subtotal { font-weight: 600; }
+  .ledger-row.total {
+    font-size: 20px; font-weight: 700;
+    border-top: 1px solid var(--hairline); margin-top: 6px; padding-top: 10px;
+  }
+  .points { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .disclaimer { color: var(--secondary); font-size: 13px; margin-top: 14px; }
+  .notice {
+    background: var(--surface); border-radius: 12px; padding: 20px;
+    margin-top: 24px; font-size: 17px;
+  }
+  footer { color: var(--secondary); font-size: 13px; margin-top: 28px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main id="app">
+  <div class="notice" id="status">Reading the report link…</div>
+</main>
+<script>
+(function () {
+  'use strict';
+
+  var DISCLAIMER_FALLBACK =
+    'ScoreLedger is a food-information tool. This score describes the ' +
+    'labelled contents of this product. It is not personal health advice.';
+
+  var SECTION_HEADERS = {
+    'base': 'Nutrient profile (per 100 g)',
+    'additives': 'Additives',
+    'nova': 'Processing',
+    'data-gap': 'Data gaps'
+  };
+
+  function el(tag, text, cls) {
+    var node = document.createElement(tag);
+    if (text != null) node.textContent = text;
+    if (cls) node.className = cls;
+    return node;
+  }
+
+  function fail(message) {
+    var main = document.getElementById('app');
+    main.textContent = '';
+    var box = el('div', null, 'notice');
+    box.appendChild(el('strong', 'This link cannot be opened.'));
+    box.appendChild(document.createElement('br'));
+    box.appendChild(document.createTextNode(message));
+    main.appendChild(box);
+  }
+
+  function bandColor(score) {
+    if (score >= 75) return 'var(--green)';
+    if (score >= 55) return 'var(--lime)';
+    if (score >= 35) return 'var(--orange)';
+    return 'var(--red)';
+  }
+
+  function fmtPoints(points) {
+    if (points == null) return '—';
+    return points > 0 ? '+' + points : '' + points;
+  }
+
+  function decodePayload() {
+    var hash = window.location.hash || '';
+    if (hash.charAt(0) === '#') hash = hash.substring(1);
+    if (hash.indexOf('r=') !== 0) {
+      throw new Error('The link is missing its report payload.');
+    }
+    var b64 = hash.substring(2).replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4 !== 0) b64 += '=';
+    var binary = window.atob(b64);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    var text = new TextDecoder('utf-8').decode(bytes);
+    return JSON.parse(text);
+  }
+
+  function render(report) {
+    if (!report || report.v !== 1) {
+      throw new Error('The report format is not recognised.');
+    }
+    if (!/^[0-9a-f]{32}$/.test(report.id || '')) {
+      throw new Error('The report ID is malformed.');
+    }
+    var expires = new Date(report.expiresAt);
+    if (isNaN(expires.getTime())) {
+      throw new Error('The report carries no readable expiry.');
+    }
+    if (expires.getTime() <= Date.now()) {
+      throw new Error('This share link has expired.');
+    }
+    var product = report.product || {};
+    var main = document.getElementById('app');
+    main.textContent = '';
+
+    var card = el('div', null, 'card');
+    card.appendChild(el('h1', product.name || 'Product'));
+    if (product.brand) card.appendChild(el('div', product.brand, 'brand'));
+    var row = el('div', null, 'score-row');
+    var score = el('span', '' + report.score, 'score');
+    score.style.color = bandColor(report.score);
+    row.appendChild(score);
+    row.appendChild(el('span', 'of 100', 'of'));
+    card.appendChild(row);
+    if (report.percentileLabel) {
+      card.appendChild(el('div', report.percentileLabel, 'chip'));
+    }
+    if (report.novaGroup != null) {
+      card.appendChild(el('div',
+        'NOVA group ' + report.novaGroup, 'meta'));
+    }
+    var prov = report.provenance || {};
+    card.appendChild(el('div',
+      'Source: ' + (prov.source || 'unknown') +
+      ' · Retrieved ' + (prov.date || 'unknown'), 'meta'));
+    card.appendChild(el('p',
+      report.disclaimer || DISCLAIMER_FALLBACK, 'disclaimer'));
+    main.appendChild(card);
+
+    main.appendChild(el('h2', 'Score ledger'));
+    var ledgerCard = el('div', null, 'card');
+    var currentSection = null;
+    (report.ledger || []).forEach(function (line) {
+      if (line.section !== currentSection) {
+        currentSection = line.section;
+        var header = SECTION_HEADERS[line.section];
+        if (header) {
+          var h = el('div', header, 'ledger-row subtotal');
+          ledgerCard.appendChild(h);
+        }
+      }
+      var isTotal = line.section === 'total';
+      var isSubtotal =
+        line.label === 'Base score' || line.label === 'Additive total';
+      var r = el('div', null,
+        'ledger-row' + (isTotal ? ' total' : isSubtotal ? ' subtotal' : ''));
+      var left = el('div');
+      left.appendChild(document.createTextNode(line.label || ''));
+      if (line.detail) {
+        var d = el('div', line.detail, 'detail');
+        left.appendChild(d);
+      }
+      r.appendChild(left);
+      r.appendChild(el('span', fmtPoints(line.points), 'points'));
+      ledgerCard.appendChild(r);
+    });
+    main.appendChild(ledgerCard);
+
+    var footer = el('footer');
+    footer.appendChild(document.createTextNode(
+      'Formula ' + (report.formulaVersion || 'TL-SCORE-v1') +
+      ' · Data version ' + (report.dataVersion || 'unknown') +
+      ' · Link expires ' + expires.toLocaleDateString() + '.'));
+    footer.appendChild(document.createElement('br'));
+    footer.appendChild(document.createTextNode(
+      'Shared from ScoreLedger, a food-information tool by ' +
+      'Onikan Global Solutions LLC. This page is view-only and ' +
+      'collects nothing: the report travelled inside the link itself.'));
+    main.appendChild(footer);
+  }
+
+  try {
+    render(decodePayload());
+  } catch (error) {
+    fail(error && error.message ? error.message : 'The link is not readable.');
+  }
+})();
+</script>
+</body>
+</html>
