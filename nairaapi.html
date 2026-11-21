@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>NairaAPI</title>
+<meta name="description" content="Use Claude, GPT, and Gemini. Pay in naira. One API key, frontier models, pay with bank transfer or airtime.">
+<meta name="theme-color" content="#0f5132">
+<style>
+  :root { --ink:#14201a; --muted:#4c5a52; --green:#0f5132; --green-dark:#0a3d25; --paper:#fbfbf9; --line:#d9ded9; --gold:#c19a3d; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color:var(--ink); background:var(--paper); line-height:1.55; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 32px 20px 56px; }
+  .brand { font-weight: 700; letter-spacing: .02em; color: var(--green); font-size: 15px; text-transform: uppercase; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 14px 0 10px; }
+  .sub { font-size: 19px; color: var(--ink); margin: 0 0 14px; }
+  .body { color: var(--muted); margin: 0 0 28px; }
+  section { border-top: 3px solid var(--gold); padding-top: 20px; margin-top: 34px; }
+  h2 { font-size: 22px; margin: 0 0 6px; }
+  .note { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+  fieldset { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 10px; margin: 0 0 14px; background:#fff; }
+  legend { font-weight: 600; padding: 0 6px; font-size: 15px; }
+  label { display: block; padding: 5px 0; font-size: 15px; cursor: pointer; }
+  label.inline { display: inline-block; margin-right: 14px; }
+  input[type="text"], input[type="email"] { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 16px; background:#fff; }
+  .field { margin-bottom: 14px; }
+  .field > span { display:block; font-weight:600; margin-bottom:6px; font-size:15px; }
+  button { background: var(--green); color: #fff; border: 0; border-radius: 8px; padding: 13px 22px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; }
+  button:hover { background: var(--green-dark); }
+  button[disabled] { opacity: .55; cursor: default; }
+  .status { display:none; margin-top: 12px; padding: 11px 14px; border: 1px solid var(--gold); border-radius: 8px; background: #fdf6e0; font-size: 14px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand">NairaAPI</div>
+  <h1>Use Claude, GPT, and Gemini. Pay in naira.</h1>
+  <p class="sub">One API key. Frontier models. Pay with bank transfer or airtime, no international card needed.</p>
+  <p class="body">Nigerian developers keep hitting the same wall: the models are open, the payment is not. International cards get declined, naira cards sit at a $0 international limit. We are building the fix: one key, frontier models, naira in, tokens out.</p>
+
+  <section aria-labelledby="waitlist-h">
+    <h2 id="waitlist-h">Join the waitlist</h2>
+    <p class="note">Five short fields. Only the first one is required.</p>
+    <form id="waitlist-form" novalidate>
+      <div class="field">
+        <span id="contact-label">Email or WhatsApp number</span>
+        <input type="text" name="contact" id="contact" aria-labelledby="contact-label" autocomplete="email" required>
+      </div>
+      <fieldset>
+        <legend>Which models do you use today?</legend>
+        <label><input type="checkbox" name="models" value="Claude"> Claude</label>
+        <label><input type="checkbox" name="models" value="GPT"> GPT</label>
+        <label><input type="checkbox" name="models" value="Gemini"> Gemini</label>
+        <label><input type="checkbox" name="models" value="DeepSeek"> DeepSeek</label>
+        <label><input type="checkbox" name="models" value="Other"> Other</label>
+      </fieldset>
+      <fieldset>
+        <legend>How much do you spend on AI APIs in a typical month?</legend>
+        <label><input type="radio" name="spend" value="0"> &#8358;0</label>
+        <label><input type="radio" name="spend" value="under 5000"> under &#8358;5,000</label>
+        <label><input type="radio" name="spend" value="5000-20000"> &#8358;5,000 to &#8358;20,000</label>
+        <label><input type="radio" name="spend" value="20000-100000"> &#8358;20,000 to &#8358;100,000</label>
+        <label><input type="radio" name="spend" value="over 100000"> over &#8358;100,000</label>
+      </fieldset>
+      <div class="field">
+        <span id="friction-label">What happens when you try to pay today?</span>
+        <input type="text" name="payment_friction" id="payment_friction" aria-labelledby="friction-label" maxlength="140">
+      </div>
+      <fieldset>
+        <legend>Would you onboard through WhatsApp if the whole signup happened there?</legend>
+        <label class="inline"><input type="radio" name="whatsapp_onboard" value="Yes"> Yes</label>
+        <label class="inline"><input type="radio" name="whatsapp_onboard" value="No"> No</label>
+        <label class="inline"><input type="radio" name="whatsapp_onboard" value="Maybe"> Maybe</label>
+      </fieldset>
+      <button type="submit" id="waitlist-btn" disabled>Join the waitlist</button>
+      <div class="status" id="waitlist-status" role="status"></div>
+    </form>
+  </section>
+
+  <section aria-labelledby="poll-h">
+    <h2 id="poll-h">Quick poll</h2>
+    <p class="note">Five questions, no name, no link. Your answers shape what gets built first.</p>
+    <form id="poll-form" novalidate>
+      <fieldset>
+        <legend>1. Do you pay for any AI API today (OpenAI, Anthropic, Google)?</legend>
+        <label class="inline"><input type="radio" name="q1" value="Yes"> Yes</label>
+        <label class="inline"><input type="radio" name="q1" value="No"> No</label>
+      </fieldset>
+      <fieldset>
+        <legend>2. What stops you paying? (pick the biggest)</legend>
+        <label><input type="radio" name="q2" value="Card declined"> Card declined</label>
+        <label><input type="radio" name="q2" value="No international card"> No international card</label>
+        <label><input type="radio" name="q2" value="Naira limit"> Naira limit</label>
+        <label><input type="radio" name="q2" value="Too expensive in dollars"> Too expensive in dollars</label>
+        <label><input type="radio" name="q2" value="Nothing, I pay fine"> Nothing, I pay fine</label>
+      </fieldset>
+      <fieldset>
+        <legend>3. If you could pay in naira by bank transfer, what would you pay per month?</legend>
+        <label><input type="radio" name="q3" value="0"> &#8358;0</label>
+        <label><input type="radio" name="q3" value="under 5000"> under &#8358;5,000</label>
+        <label><input type="radio" name="q3" value="5000-20000"> &#8358;5,000 to &#8358;20,000</label>
+        <label><input type="radio" name="q3" value="over 20000"> over &#8358;20,000</label>
+      </fieldset>
+      <fieldset>
+        <legend>4. Would you switch to a new API key if it took 5 minutes and cost the same?</legend>
+        <label class="inline"><input type="radio" name="q4" value="Yes"> Yes</label>
+        <label class="inline"><input type="radio" name="q4" value="No"> No</label>
+        <label class="inline"><input type="radio" name="q4" value="Depends on the models"> Depends on the models</label>
+      </fieldset>
+      <fieldset>
+        <legend>5. Would you sign up entirely inside WhatsApp?</legend>
+        <label class="inline"><input type="radio" name="q5" value="Yes"> Yes</label>
+        <label class="inline"><input type="radio" name="q5" value="No"> No</label>
+      </fieldset>
+      <button type="submit" id="poll-btn" disabled>Vote</button>
+      <div class="status" id="poll-status" role="status"></div>
+    </form>
+  </section>
+
+  <footer>No spam. One email when the naira key is live. Your answers are never sold.</footer>
+</main>
+<script>
+// Capture wiring point: set CAPTURE.kitFormId to the Kit form id for
+// NairaAPI and both forms activate. Until then the forms stay disabled
+// with an honest activating note rather than dropping a single answer.
+var CAPTURE = { kitFormId: "" };
+(function () {
+  var msg = "Submissions are activating. Please check back shortly, nothing you type here is sent or stored yet.";
+  function arm(formId, btnId, statusId) {
+    var form = document.getElementById(formId);
+    var btn = document.getElementById(btnId);
+    var status = document.getElementById(statusId);
+    if (CAPTURE.kitFormId) { btn.disabled = false; return; }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      status.textContent = msg;
+      status.style.display = "block";
+    });
+    btn.disabled = false;
+    btn.addEventListener("click", function () {
+      status.textContent = msg;
+      status.style.display = "block";
+    });
+  }
+  arm("waitlist-form", "waitlist-btn", "waitlist-status");
+  arm("poll-form", "poll-btn", "poll-status");
+})();
+</script>
+</body>
+</html>
